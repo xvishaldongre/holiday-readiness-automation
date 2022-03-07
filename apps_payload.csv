@@ -1,0 +1,17 @@
+name,query1,query2,slo_id
+Netsuit,"service:""netsuite/upcheck.py"" status:ok env:prod","service:""netsuite/upcheck.py"" status:error env:prod",facb058b750252e49e5e4844173252c1
+XPO,"service:""xpo/upcheck.py"" status:ok env:prod","service:""xpo/upcheck.py"" status:error env:prod",4642e6deb21458249fda235a2662b6ff
+Okta,"service:""okta/upcheck.py"" status:ok env:prod","service:""okta/upcheck.py"" status:error env:prod",fe758e18ffae56568fc8e93ffde68d07
+Zendesk,"service:""zendesk/upcheck.py"" status:ok env:prod","service:""zendesk/upcheck.py"" status:error env:prod",ac96bed38b9a5e51a52f13cf39cb2370
+Scale,"service:""ma_scale/upcheck.py"" status:ok env:prod","service:""ma_scale/upcheck.py"" status:error env:prod",417717f44f485d3d9000882c5c1809a1
+Scale SCI,"service:""sci_scale/upcheck.py"" status:ok env:prod","service:""sci_scale/upcheck.py"" status:error env:prod",d966fb7ac2e951218de438e0325817d7
+Scale TMS,"service:""tms/upcheck.py"" status:ok env:prod","service:""tms/upcheck.py"" status:error env:prod",a4a02997b8915a62a4b90f7a593f8262
+Drift Chat Widgets,service:drift_chat_widgets\/*_widget.py status:ok env:prod,service:drift_chat_widgets\/*_widget.py status:error env:prod,a4363c561fb65067b3e605da33676c5d
+Drift Chat App,"service:""drift_chat_app/upcheck.py"" status:ok env:prod","service:""drift_chat_app/upcheck.py"" status:error env:prod",d4b5ff20d9175bd49de28f4bc5e61321
+E2 Open,"service:""e2open/upcheck.py"" status:ok env:prod","service:""e2open/upcheck.py"" status:error env:prod",612092095d8f5f329781e26d9b7096df
+Gmail,"service:""gmail/upcheck.py"" status:ok env:prod","service:""gmail/upcheck.py"" status:error env:prod",97afa55979dd55bdbf2299dea4befffa
+Jira Onprem,"service:""jira_onprem/upcheck.py"" status:ok env:prod","service:""jira_onprem/upcheck.py"" status:error env:prod",f27019200ea659a3abbf8aa53b38107f
+Pageduty,"service:""pagerduty/upcheck.py"" status:ok env:prod","service:""pagerduty/upcheck.py"" status:error env:prod",e2996b64da9d5aedb420f839313c8914
+Greenhouse,"service:""greenhouse/upcheck.py"" status:ok env:prod","service:""greenhouse/upcheck.py"" status:error env:prod",39e2d6da3ef25c7386a576c4b62dcdbe
+Talkdesk,"service:""talkdesk/upcheck.py"" status:ok env:prod","service:""talkdesk/upcheck.py"" status:error env:prod",1147a5dd986f5148937dca011ea390d3
+Shopify,"service:""shopify/upcheck.py"" status:ok env:prod","service:""shopify/upcheck.py"" status:error env:prod",60336b5db68a5eadadc9f9e70b7d4ca2

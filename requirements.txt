@@ -1,0 +1,8 @@
+atlassian
+atlassian_python_api
+grequests
+Jinja2
+jira
+pandas
+python-dotenv
+requests
