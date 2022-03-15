@@ -6,3 +6,4 @@ jira
 pandas
 python-dotenv
 requests
+filemagicg
