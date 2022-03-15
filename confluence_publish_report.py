@@ -12,39 +12,6 @@ TOKEN = os.getenv("CONFLUENCE_TOKEN")
 CLOUD = True
 
 
-# # Sample Data report to update the page
-# data = {
-#     "region": "US East",
-#     "date": "February 24th, 2022",
-#     "status": {
-#         "overall": "green",
-#         "apps": "green",
-#         "network": "green",
-#         "server": "green",
-#         "jira": "green",
-#     },
-#     "data": {
-#         "Networks": [
-#             {
-#                 "id": "EI-2001",
-#                 "description": "Au site went down.",
-#                 "impact": "ISP confirmed outage. Network impacted. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, nostrum?Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, nostrum?",
-#                 "eta": "N/A",
-#             },
-#             {
-#                 "id": "EI-2002",
-#                 "description": "NY HQ cam not working.",
-#                 "impact": "Lerner team is replacing cam.",
-#                 "eta": "N/A",
-#             },
-#         ],
-#         "Applications": [],
-#         "Servers": [],
-#     },
-# }
-
-# page_id = 884737
-
 
 def publish(page_id, data):
 

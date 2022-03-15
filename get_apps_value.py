@@ -1,4 +1,3 @@
-
 import pandas as pd
 import time
 import grequests
@@ -12,9 +11,9 @@ API_KEY = os.getenv("DATADOG_API_KEY")
 
 
 def get_apps_avalibility(headers, slo_ids, from_, to_):
-    '''
+    """
     This function will return the avalibility of the slo_ids
-    '''
+    """
     # params for the request
     params = {
         "interval": "60",
@@ -26,8 +25,14 @@ def get_apps_avalibility(headers, slo_ids, from_, to_):
     }
 
     # create a list of requests
-    rs = (grequests.get(
-        f"https://app.datadoghq.com/api/v1/slo/{slo_id}/history", headers=headers, params=params) for slo_id in slo_ids)
+    rs = (
+        grequests.get(
+            f"https://app.datadoghq.com/api/v1/slo/{slo_id}/history",
+            headers=headers,
+            params=params,
+        )
+        for slo_id in slo_ids
+    )
 
     # send all requests and wait for all of them to finish
     results = grequests.map(rs)
@@ -36,7 +41,7 @@ def get_apps_avalibility(headers, slo_ids, from_, to_):
         # return the avalibility if status code is 200
         if item.status_code == 200:
             item = item.json()
-            value = item['data']['overall']['sli_value']
+            value = item["data"]["overall"]["sli_value"]
             return round(value, 2)
         else:
             return None
@@ -48,20 +53,26 @@ def get_apps_avalibility(headers, slo_ids, from_, to_):
 
 
 def get_apps_performance(headers, perf_payload, from_, to_):
-    '''
+    """
     This function will return the performance of the apps
-    '''
+    """
 
     def modify_time(item):
-        item["data"][0]["attributes"]["from"] = int(from_)*1000
-        item["data"][0]["attributes"]["to"] = int(to_)*1000
+        item["data"][0]["attributes"]["from"] = int(from_) * 1000
+        item["data"][0]["attributes"]["to"] = int(to_) * 1000
         return item
 
     perf_payload = list(map(modify_time, perf_payload))
 
     # create a list of requests
-    perf_rs = (grequests.post("https://app.datadoghq.com/api/v2/query/scalar",
-               headers=headers, json=payload) for payload in perf_payload)
+    perf_rs = (
+        grequests.post(
+            "https://app.datadoghq.com/api/v2/query/scalar",
+            headers=headers,
+            json=payload,
+        )
+        for payload in perf_payload
+    )
 
     # send all requests and wait for all of them to finish
     perf_results = grequests.map(perf_rs)
@@ -69,6 +80,7 @@ def get_apps_performance(headers, perf_payload, from_, to_):
 
     def get_perf(item):
         # return performance if iteam status is 200
+
         if item.status_code == 200:
             item = item.json()
             # print(item)
@@ -83,9 +95,9 @@ def get_apps_performance(headers, perf_payload, from_, to_):
 
 
 def time_range_1h():
-    '''
+    """
     This function will return the time range for 1 hour
-    '''
+    """
     now = time.time()
     from_ = now - 3600
     to_ = now
@@ -94,9 +106,9 @@ def time_range_1h():
 
 
 def genrate_apps_payload(payload_file):
-    '''
+    """
     Generate the payload for the apps from the csv file
-    '''
+    """
     print("Genrating payload for applications.")
     df = pd.read_csv(payload_file)
     apps_data = {}
@@ -159,22 +171,25 @@ def fetch_apps():
     }
 
     # create a list of payloads for performance of the apps
-    perf_payload = [value['performance'] for value in apps_payload.values()]
+    perf_payload = [value["performance"] for value in apps_payload.values()]
     print("Started pulling applications performance.")
     performance = get_apps_performance(headers, perf_payload, from_, to_)
 
     # create a list of payload for avalibility of the apps
 
-    aval_payload = [value['avalibility']['slo_id']
-                    for value in apps_payload.values()]
+    aval_payload = [value["avalibility"]["slo_id"] for value in apps_payload.values()]
 
     print("Started pulling applications avalibility.")
     avalibility = get_apps_avalibility(headers, aval_payload, from_, to_)
 
     print("Organizing apps data for result.")
     apps_names = [app_name for app_name in apps_payload.keys()]
-    final = {app_name: {'performance': performance, 'avalibility': avalibility}
-             for app_name, performance, avalibility in zip(apps_names, performance, avalibility)}
+    final = {
+        app_name: {"performance": performance, "avalibility": avalibility}
+        for app_name, performance, avalibility in zip(
+            apps_names, performance, avalibility
+        )
+    }
     print("Done organizing apps.")
 
     return final
