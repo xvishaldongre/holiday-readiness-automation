@@ -1,4 +1,3 @@
-
 from atlassian import Confluence
 from confluence_report_template import template
 from dotenv import load_dotenv
@@ -53,7 +52,12 @@ def publish(page_id, data):
     auth_url, auth_username, auth_password, auth_cloud = URL, USERNAME, TOKEN, CLOUD
 
     # Initialize Confluence object
-    confluence = Confluence(auth_url, auth_username, auth_password, auth_cloud)
+    confluence = Confluence(
+        auth_url,
+        auth_username,
+        auth_password,
+        auth_cloud,
+    )
 
     # Get the page content
     page_content = confluence.get_page_by_id(page_id, expand="body.storage")
@@ -64,6 +68,7 @@ def publish(page_id, data):
     new_report = template.render(
         region=data["region"],
         date=data["date"],
+        time_to_show=data["time_to_show"],
         status=data["status"],
         data=data["data"],
     )
@@ -72,7 +77,6 @@ def publish(page_id, data):
     updated_content = new_report + old_content
 
     # Update the page and if fails try 3 time
-
     for i in range(3):
         try:
             print(f"Trying{i}...")

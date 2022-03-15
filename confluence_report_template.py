@@ -2,7 +2,7 @@ from jinja2 import Template
 
 html = """
 <h1 style="text-align: center;"><strong>{{region}}</strong></h1>
-<p style="text-align: center">{{date}} - 07:00 AM Central / 8:00 AM EST</p>
+<p style="text-align: center">{{date}} - {{time_to_show}}</p>
 <h2 style="text-align: center">Overall Status: <ac:structured-macro
         ac:name="status"
         ac:schema-version="1"

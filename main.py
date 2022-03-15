@@ -16,7 +16,7 @@ def prepare_data(region, network_data, apps_data, server_data):
                 {
                     "id": ticket_id,
                     "description": value["summary"],
-                    "impact": "Network team is working on resolving incident.",
+                    "impact": "Network team is working on incident.",
                     "eta": "N/A",
                 }
             )
@@ -121,9 +121,11 @@ def organize_for_report(region, network_data, apps_data, server_data):
     status = prepare_status(data)
     date = prepare_date()
     region_name = region["name"]
+    report_time = region["report_time"]
     return {
         "region": region_name,
         "date": date,
+        "time_to_show": report_time,
         "status": status,
         "data": data,
     }
@@ -134,11 +136,14 @@ apps_data = fetch_apps()
 server_data = fetch_prod()
 
 
+## Regions Data
+# P Testing page - 41596224643
+# V Testing page - 884737
 regions = [
     {
         "page_id": 884737,
-        "name": "US Central",
-        "update_time": "5:30 pm EST",
+        "name": "US East",
+        "report_time": "07:00 AM EST",
         "filter": "us-",
     }
 ]
@@ -147,4 +152,5 @@ regions = [
 report_data = organize_for_report(regions[0], network_data, apps_data, server_data)
 page_id = regions[0]["page_id"]
 
+# print(report_data)
 publish(page_id, report_data)
