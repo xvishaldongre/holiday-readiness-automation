@@ -1,3 +1,0 @@
-Jira Cloud,"service:""jira_cloud/upcheck.py"" status:ok env:prod","service:""jira_cloud/upcheck.py"" status:error env:prod",dc37032e972e539fba16a60811c4575f
-Boomi Hub,"service:""boomi_hub/upcheck.py"" status:ok env:prod","service:""boomi_hub/upcheck.py"" status:error env:prod",6363196998f9578488db08079a03b5b7
-Windchill,"service:""windchill/upcheck.py"" status:ok env:prod","service:""windchill/upcheck.py"" status:error env:prod",edf351e700815d86869aa90f741b4264
